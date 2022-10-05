@@ -22,9 +22,9 @@ const callCounter = (fn) => {
 
 // callCounter with count 0 is saved to the test variable
 // Which returns a function that logs the count and returns the result of sum
-// const test = callCounter(sum)
-// console.log(test(4, 5))
-// console.log(test(2, 5))
+const test = callCounter(sum)
+console.log(test(4, 5))
+console.log(test(2, 5))
 
 // Async example
 
@@ -59,3 +59,23 @@ const fetchTodos = async () => {
 }
 
 fetchTodos()
+
+const add = (num1, num2) => {
+	return num1 + num2
+}
+
+const delay = (fn) => {
+	return (num1, num2) => {
+		setTimeout(() => {
+			console.log(fn(num1, num2))
+
+			// Returning the value and console.log(fourSecondsDelay) doesn't work because
+			// fourSecondsDelay will be undefined at run time and won't "update" to show the result of add()
+			// return fn(num1, num2)
+		}, 4000)
+	}
+}
+
+const fourSecondsDelay = delay(add)
+
+fourSecondsDelay(1, 1)
